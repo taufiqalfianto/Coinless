@@ -1,4 +1,5 @@
 import 'package:coinless/sign-in-page.dart';
+import 'package:coinless/sign-up-page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,9 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => SignInPage(),
+        '/sign-up': (context) => SignUpPage(),
       },
     );
   }

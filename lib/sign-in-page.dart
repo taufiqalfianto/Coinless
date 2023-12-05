@@ -1,5 +1,8 @@
 // ignore: file_names
 import 'package:coinless/theme.dart';
+import 'package:coinless/widget/form-pass-widget.dart';
+import 'package:coinless/widget/form-widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -11,7 +14,6 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  bool _isvisibility = true;
   bool _isRemember = true;
 
   @override
@@ -53,80 +55,8 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(
                 height: 35,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Username',
-                    style: blackTextStyle.copyWith(
-                      fontSize: 14,
-                      fontWeight: light,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          // color: kBlueColor,
-                          width: 3,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Password',
-                    style: blackTextStyle.copyWith(
-                      fontSize: 14,
-                      fontWeight: light,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    obscureText: _isvisibility,
-                    decoration: InputDecoration(
-                      focusColor: whitecolor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          color: bluecolor,
-                          width: 3,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _isvisibility = !_isvisibility;
-                          });
-                        },
-                        icon: Icon(
-                          _isvisibility
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              FormWidget(title: 'Username'),
+              FormPassWidget(
               ),
               SizedBox(
                 height: 20,
@@ -213,21 +143,30 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(
                 height: 40,
               ),
-              Text(
-                'Belum punya akun? Sign up',
-                style: blackTextStyle.copyWith(
-                  fontSize: 14,
-                  fontWeight: medium,
+              RichText(
+                text: TextSpan(
+                  text: 'Belum punya akun?',
+                  style: blackTextStyle.copyWith(fontSize: 14),
+                  children: [
+                    TextSpan(
+                      text: ' Sign up',
+                      style: darkblueTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: bold,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(context, '/sign-up');
+                        },
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 10,
               ),
               Text(
                 'Lupa password?',
-                style: blackTextStyle.copyWith(
+                style: blueTextStyle.copyWith(
                   fontSize: 14,
-                  fontWeight: medium,
+                  fontWeight: bold,
                 ),
               )
             ],
