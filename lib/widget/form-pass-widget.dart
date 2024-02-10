@@ -1,9 +1,11 @@
-import 'package:coinless/theme.dart';
+import 'package:coinless/shared/theme.dart';
 import 'package:flutter/material.dart';
 
 class FormPassWidget extends StatefulWidget {
+  final TextEditingController controller;
   const FormPassWidget({
     super.key,
+    required this.controller,
   });
 
   @override
@@ -19,7 +21,7 @@ class _FormPassWidgetState extends State<FormPassWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Passwords',
+          'Password',
           style: blackTextStyle.copyWith(
             fontSize: 14,
             fontWeight: light,

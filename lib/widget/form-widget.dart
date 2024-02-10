@@ -1,11 +1,15 @@
-import 'package:coinless/theme.dart';
+import 'package:coinless/shared/theme.dart';
 import 'package:flutter/material.dart';
 
 class FormWidget extends StatelessWidget {
   final String title;
+  final bool obsecure;
+  final TextEditingController controller;
   const FormWidget({
     super.key,
+    this.obsecure = false,
     required this.title,
+    required this.controller,
   });
 
   @override
@@ -24,6 +28,8 @@ class FormWidget extends StatelessWidget {
           height: 10,
         ),
         TextFormField(
+          obscureText: obsecure,
+          controller: controller,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),

@@ -1,6 +1,6 @@
-import 'package:coinless/theme.dart';
-import 'package:coinless/widget/form-pass-widget.dart';
-import 'package:coinless/widget/form-widget.dart';
+import 'package:coinless/shared/theme.dart';
+import 'package:coinless/widget/custom-button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -82,14 +82,53 @@ class SignUpPage extends StatelessWidget {
               SizedBox(
                 height: 28,
               ),
-              FormWidget(
-                title: 'Username',
+              // FormWidget(
+              //   title: 'Username',
+              // ),
+              // FormWidget(
+              //   controller: ,
+              //   title: 'Email',
+              // ),
+              SizedBox(
+                height: 28,
               ),
-              FormWidget(
-                title: 'Email',
+              SizedBox(
+                height: 28,
               ),
-              FormPassWidget(),
-              FormPassWidget(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/home', (route) => false);
+                },
+                child: CustomButton(
+                  title: 'Sign Up',
+                ),
+              ),
+              SizedBox(
+                height: 28,
+              ),
+              RichText(
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: 'Sudah punya akun?',
+                    style: blackTextStyle.copyWith(
+                      fontSize: 14,
+                      fontWeight: light,
+                    ),
+                  ),
+                  TextSpan(
+                    text: ' Log In',
+                    style: darkblueTextStyle.copyWith(
+                      fontSize: 14,
+                      fontWeight: bold,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pushNamed(context, '/');
+                      },
+                  ),
+                ]),
+              )
             ],
           ),
         ],
