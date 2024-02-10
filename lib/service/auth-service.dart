@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:coinless/model/login-model.dart';
+import 'package:coinless/model/sign-up.dart';
 import 'package:coinless/model/user-model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +12,27 @@ class AuthService {
     try {
       final response = await http.post(
         Uri.parse('$baseUrl/login'),
+        body: data.tojson(),
+      );
+      print(response.body);
+      if (response.statusCode == 200) {
+        UserModel user = UserModel.fromJson(jsonDecode(response.body));
+        user = user.copywith(token: data.password);
+
+        await storeCredentials(user);
+
+        return user;
+      } else {
+        throw jsonDecode(response.body)['message'];
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+  Future<UserModel> register(SignUpModel data) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/register'),
         body: data.tojson(),
       );
       print(response.body);
